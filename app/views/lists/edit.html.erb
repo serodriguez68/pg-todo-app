@@ -1,0 +1,11 @@
+<% content_for :title do %> Edit <%= @list.title %> <% end %>
+<h1>Edit <%= @list.title %></h1>
+
+<div class="form">
+    <%= simple_form_for @list do |form| %>
+        <%= form.error_notification %>
+        <%= form.input :title %>
+        <%= form.input :description %>
+        <%= form.button :submit, 'Update List', class: 'submit' %>
+    <% end %>
+</div>

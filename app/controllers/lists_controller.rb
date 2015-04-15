@@ -1,15 +1,9 @@
 class ListsController < ApplicationController
 
     def index
-        Rails.logger.debug "-"*30
-        Rails.logger.debug "DEBUG: entering index method"
-        Rails.logger.debug "-"*30
 
-        @lists = List.all
+        @lists = List.all.order('id')
 
-        Rails.logger.debug "-"*30
-        Rails.logger.debug "DEBUG: List.all #{List.all}"
-        Rails.logger.debug "-"*30
     end
 
     def show
@@ -20,6 +14,10 @@ class ListsController < ApplicationController
     end
 
     def create
+        Rails.logger.debug("-"*30)
+        Rails.logger.debug("Entering Create action")
+        Rails.logger.debug("-"*30)
+
         @list = List.new(secure_params)
 
         if @list.save
@@ -31,10 +29,24 @@ class ListsController < ApplicationController
     end
 
     def edit
-
+        @list = List.find(params.require(:id))
     end
 
     def update
+        Rails.logger.debug("-"*30)
+        Rails.logger.debug("Entering Update action")
+        Rails.logger.debug("-"*30)
+
+
+        @list = List.find(params.require(:id))
+        if @list.update(secure_params)
+            flash[:success] = "List #{@list.title} Updated"
+            redirect_to root_path
+        else
+            render :edit
+        end
+
+
     end
 
     def destroy
