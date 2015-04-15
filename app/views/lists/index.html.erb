@@ -3,7 +3,7 @@
 <ul>
     <% @lists.each do |list| %>
         <li>
-            <strong><%= list.id.to_s + " " + list.title %></strong>: <%= list.description %>
+            <strong><%= list.title %></strong>: <%= list.description %>
             <%= link_to 'Edit', edit_list_path(list) %>
             <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' } %>
         </li>
