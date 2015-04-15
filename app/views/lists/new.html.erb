@@ -1,0 +1,12 @@
+<% content_for :title do %> Create a new list <% end %>
+<h1>Create a new list</h1>
+
+<div class="form">
+    <%= simple_form_for @list do |form| %>
+        <%= form.error_notification %>
+        <%= form.input :title %>
+        <%= form.input :description %>
+        <%= form.button :submit, 'Create List', class: 'submit' %>
+    <% end %>
+</div>
+
