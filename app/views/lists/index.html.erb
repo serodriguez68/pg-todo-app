@@ -1,0 +1,7 @@
+<h1> List index </h1>
+
+<ul>
+    <% @lists.each do |list| %>
+        <li><strong><%= list.title %></strong>: <%= list.description %></li>
+    <% end %>
+</ul>
