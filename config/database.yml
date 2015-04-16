@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: pg-todo-app_production
-  username: pg-todo-app
+  database: <%= ENV['PG-TODO-APP_DATABASE_NAME'] %>
+  username: <%= ENV['PG-TODO-APP_DATABASE_USER'] %>
   password: <%= ENV['PG-TODO-APP_DATABASE_PASSWORD'] %>
