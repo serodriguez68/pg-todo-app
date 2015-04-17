@@ -1,5 +1,7 @@
 class List < ActiveRecord::Base
 
+    has_many :items, dependent: :destroy
+
     # Validations
     validates :title, presence:  {message: 'A title is required for the list'}
     validates :title, length: {

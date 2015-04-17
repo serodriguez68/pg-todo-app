@@ -7,6 +7,7 @@ class ListsController < ApplicationController
     end
 
     def show
+        @list = List.find(params.require(:id))
     end
 
     def new

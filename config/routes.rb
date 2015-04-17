@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :lists, only: [:new, :create, :edit, :update, :destroy]
+  # resources :lists, only: [:new, :create, :edit, :update, :destroy]
+
+  # Example resource route with sub-resources:
+    resources :lists, only: [:new, :create, :edit, :update, :destroy, :show] do
+      resources :items, only: [:new, :create, :edit, :update, :destroy]
+    end
+
+
 
   root to: 'lists#index'
 
