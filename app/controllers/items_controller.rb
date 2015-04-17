@@ -20,6 +20,30 @@ class ItemsController < ApplicationController
 
     end
 
+    def new
+        @list = List.find(params[:list_id])
+        @item = Item.new
+    end
+
+    def create
+        @list = List.find(params[:list_id])
+        @item=Item.new(secure_params)
+        @item.list = @list
+
+        Rails.logger.debug("-"*30)
+        Rails.logger.debug("Es valido? - #{@item.valid?}")
+        Rails.logger.debug("los errores son: #{@item.errors.messages}")
+        Rails.logger.debug("-"*30)
+
+
+        if @item.save
+            flash[:success] = "New item created in #{@list.title} list"
+            redirect_to list_path(@list)
+        else
+            render :new
+        end
+    end
+
     private
 
     def secure_params
