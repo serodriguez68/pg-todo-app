@@ -44,6 +44,14 @@ class ItemsController < ApplicationController
         end
     end
 
+    def destroy
+        @list = List.find(params[:list_id])
+        @item = Item.find(params.require(:id))
+        @item.destroy
+        flash[:success] = "Item deleted"
+        redirect_to list_path(@list)
+    end
+
     private
 
     def secure_params

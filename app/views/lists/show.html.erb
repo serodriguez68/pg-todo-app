@@ -5,11 +5,10 @@
         <li>
             <strong><%= item.content %></strong>
             <%= link_to 'Edit', edit_list_item_path(@list, item) %>
-
+            <%= link_to 'Delete', list_item_path(@list, item), method: :delete, data: {confirm: 'Are you sure?'} %>
         </li>
 
     <% end %>
 </ul>
 
 <%= link_to 'New Item', new_list_item_path(@list) %>
-
