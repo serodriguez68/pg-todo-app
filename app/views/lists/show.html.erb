@@ -1,0 +1,13 @@
+<h1> View <%= @list.title %></h1>
+
+<ul>
+    <% @list.items.each do |item| %>
+        <li>
+            <strong><%= item.content %></strong>
+            <%= link_to 'Edit', edit_list_item_path(@list, item) %>
+
+        </li>
+
+    <% end %>
+</ul>
+
