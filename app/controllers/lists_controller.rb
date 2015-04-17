@@ -1,5 +1,7 @@
 class ListsController < ApplicationController
 
+    before_action :find_list, only: [:show, :edit, :update, :destroy]
+
     def index
 
         @lists = List.all.order('id')
@@ -7,7 +9,7 @@ class ListsController < ApplicationController
     end
 
     def show
-        @list = List.find(params.require(:id))
+
     end
 
     def new
@@ -30,7 +32,7 @@ class ListsController < ApplicationController
     end
 
     def edit
-        @list = List.find(params.require(:id))
+
     end
 
     def update
@@ -38,8 +40,6 @@ class ListsController < ApplicationController
         Rails.logger.debug("Entering Update action")
         Rails.logger.debug("-"*30)
 
-
-        @list = List.find(params.require(:id))
         if @list.update(secure_params)
             flash[:success] = "List #{@list.title} Updated"
             redirect_to root_path
@@ -51,13 +51,16 @@ class ListsController < ApplicationController
     end
 
     def destroy
-        @list=List.find(params[:id])
         @list.destroy
         flash[:success] = "List #{@list.title} Deleted"
         redirect_to root_path
     end
 
     private
+
+    def find_list
+        @list=List.find(params[:id])
+    end
 
     def secure_params
         params.require(:list).permit(:title, :description)
